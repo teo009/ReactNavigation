@@ -13,19 +13,26 @@ const HomeScreen = ({ navigation }) => {
       <Text>Hello from Home Screen</Text>
       <Button
         title="Go to details"
-        onPress={() => navigation.navigate('Details')}
+        onPress={() => {
+          navigation.navigate('Details', {
+            itemId: 86,
+            otherParam: 'Teo el mero crack'
+          });
+        }}
       />
     </View>
   );
 }
 
-const DetailsScreen = ({ navigation }) => {
+const DetailsScreen = ({ route, navigation }) => {
+  const { itemId, otherParam } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Details Screen</Text>
+      <Text>itemId: {JSON.stringify(itemId)}</Text>
       <Button 
         title="Back to inicio"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.goBack('Details')}
       />
     </View>
   );
