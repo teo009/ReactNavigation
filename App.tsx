@@ -19,10 +19,14 @@ const HomeScreen = ({ navigation }) => {
   );
 }
 
-const DetailsScreen = () => {
+const DetailsScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Details Screen</Text>
+      <Button 
+        title="Back to inicio"
+        onPress={() => navigation.navigate('Home')}
+      />
     </View>
   );
 }
