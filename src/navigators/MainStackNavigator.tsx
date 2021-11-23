@@ -1,10 +1,14 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import FeedScreen from '../screens/FeedScreen';
 import HomeScreen from '../screens/HomeScreen';
 import TweetDetaiScreen from '../screens/TweetDetaiScreen';
 
-const Stack = createNativeStackNavigator();
+export type MainStackParamList = {
+    HomeScreen: undefined;
+    TweetDetaiScreen: { id: number, tweet_text: string  }
+};
+
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStackNavigator = () => {
     return (
@@ -14,7 +18,7 @@ const MainStackNavigator = () => {
                 component={HomeScreen}
                 options={{ title: 'Inicio' }} />
             <Stack.Screen
-                name="TweetDetailScreen"
+                name="TweetDetaiScreen"
                 component={TweetDetaiScreen} />
         </Stack.Navigator>
     )
