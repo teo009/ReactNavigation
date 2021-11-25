@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import TweetDetaiScreen from '../screens/TweetDetaiScreen';
+import { View } from 'react-native';
 
 export type MainStackParamList = {
     HomeScreen: undefined;
@@ -16,10 +17,12 @@ const MainStackNavigator = () => {
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                options={{ title: 'Inicio' }} />
+                options={{ title: 'Inicio' }} 
+            />
             <Stack.Screen
                 name="TweetDetaiScreen"
-                component={TweetDetaiScreen} />
+                component={TweetDetaiScreen} 
+            />
         </Stack.Navigator>
     )
 

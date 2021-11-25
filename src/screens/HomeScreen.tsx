@@ -31,7 +31,19 @@ const HomeScreen = ({ navigation }: Props) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.texto}>Home Screen</Text>
+            <Text style={styles.textoTitle}>Home Screen</Text>
+
+            <View style={styles.addSection}>
+                <Text style={styles.textoAdd}>Add new Tweet</Text>
+                <TouchableOpacity>
+                    <FontAwesome
+                        name='arrow-circle-right' 
+                        size={32}
+                        color='green'
+                    />
+                </TouchableOpacity>
+            </View>
+
             {
                 tweetData.map(tweet => (
                     <View key={ tweet.id } style={styles.viewContent}>
@@ -43,7 +55,7 @@ const HomeScreen = ({ navigation }: Props) => {
                             })}
                         >
                             <FontAwesome 
-                                name='arrow-circle-right'
+                                name='edit'
                                 size={32}
                             />
                         </TouchableOpacity>
@@ -72,8 +84,19 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 20,
     },
-    texto: {
+    textoTitle: {
         fontSize: 40, 
         marginBottom: 50
-    }
+    },
+    textoAdd: {
+        fontSize: 25, 
+        color: 'green'
+    },
+    addSection: {
+        width: '60%',
+        marginBottom: 30,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
 })
