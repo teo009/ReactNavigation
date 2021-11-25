@@ -17,11 +17,28 @@ const MainStackNavigator = () => {
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                options={{ title: 'Inicio' }} 
+                options={{ 
+                    title: 'Inicio',
+                    headerStyle: {
+                        backgroundColor: '#90EE90'
+                    },
+                    headerTitleStyle: {
+                        fontSize: 25,
+                    }
+                }} 
             />
             <Stack.Screen
                 name="TweetDetaiScreen"
                 component={TweetDetaiScreen} 
+                options={{
+                    title: 'Tweet Info',
+                    headerStyle: {
+                        backgroundColor: '#90EE90'
+                    },
+                    headerTitleStyle: {
+                        fontSize: 25,
+                    },
+                }}
             />
         </Stack.Navigator>
     )
