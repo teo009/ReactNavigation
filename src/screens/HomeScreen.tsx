@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../navigators/MainStackNavigator';
 
@@ -29,11 +29,11 @@ const HomeScreen = ({ navigation }: Props) => {
     },[])
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 30 }}>Home Screen</Text>
+        <View style={styles.container}>
+            <Text style={styles.texto}>Home Screen</Text>
             {
                 tweetData.map(tweet => (
-                    <View key={ tweet.id }>
+                    <View key={ tweet.id } style={styles.viewContent}>
                         <Text>{tweet.tweet_text}</Text>
                         <Button
                             title="Go to Details"
@@ -50,3 +50,25 @@ const HomeScreen = ({ navigation }: Props) => {
 }
 
 export default HomeScreen
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center',
+    },
+    viewContent: {
+        width: '90%',
+        backgroundColor: '#DCDCDC',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+        borderRadius: 10,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+    },
+    texto: {
+        fontSize: 40, 
+        marginBottom: 50
+    }
+})
