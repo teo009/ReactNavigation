@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../navigators/MainStackNavigator';
 import { FontAwesome } from '@expo/vector-icons'
@@ -30,39 +30,41 @@ const HomeScreen = ({ navigation }: Props) => {
     },[])
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.textoTitle}>Home Screen</Text>
+        <ScrollView>
+            <View style={styles.container}>
+                <Text style={styles.textoTitle}>Home Screen</Text>
 
-            <View style={styles.addSection}>
-                <Text style={styles.textoAdd}>Add new Tweet</Text>
-                <TouchableOpacity>
-                    <FontAwesome
-                        name='arrow-circle-right' 
-                        size={32}
-                        color='green'
-                    />
-                </TouchableOpacity>
+                <View style={styles.addSection}>
+                    <Text style={styles.textoAdd}>Add new Tweet</Text>
+                    <TouchableOpacity>
+                        <FontAwesome
+                            name='arrow-circle-right' 
+                            size={32}
+                            color='green'
+                        />
+                    </TouchableOpacity>
+                </View>
+
+                {
+                    tweetData.map(tweet => (
+                        <View key={ tweet.id } style={styles.viewContent}>
+                            <Text>{tweet.tweet_text}</Text>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('TweetDetaiScreen', {
+                                    id: tweet.id,
+                                    tweet_text: tweet.tweet_text,
+                                })}
+                            >
+                                <FontAwesome 
+                                    name='edit'
+                                    size={32}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    ))
+                }
             </View>
-
-            {
-                tweetData.map(tweet => (
-                    <View key={ tweet.id } style={styles.viewContent}>
-                        <Text>{tweet.tweet_text}</Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('TweetDetaiScreen', {
-                                id: tweet.id,
-                                tweet_text: tweet.tweet_text,
-                            })}
-                        >
-                            <FontAwesome 
-                                name='edit'
-                                size={32}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                ))
-            }
-        </View>
+        </ScrollView>
     )
 }
 
@@ -83,10 +85,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingVertical: 5,
         paddingHorizontal: 20,
+        alignItems: 'center',
     },
     textoTitle: {
         fontSize: 40, 
-        marginBottom: 50
+        marginBottom: 30,
+        marginTop: 30,
     },
     textoAdd: {
         fontSize: 25, 
