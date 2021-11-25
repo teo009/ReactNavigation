@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainStackParamList } from '../navigators/MainStackNavigator';
+import { FontAwesome } from '@expo/vector-icons'
 
 type Props = NativeStackScreenProps<MainStackParamList, 'HomeScreen'>;
 
@@ -35,13 +36,17 @@ const HomeScreen = ({ navigation }: Props) => {
                 tweetData.map(tweet => (
                     <View key={ tweet.id } style={styles.viewContent}>
                         <Text>{tweet.tweet_text}</Text>
-                        <Button
-                            title="Go to Details"
+                        <TouchableOpacity
                             onPress={() => navigation.navigate('TweetDetaiScreen', {
                                 id: tweet.id,
                                 tweet_text: tweet.tweet_text,
                             })}
-                        />
+                        >
+                            <FontAwesome 
+                                name='arrow-circle-right'
+                                size={32}
+                            />
+                        </TouchableOpacity>
                     </View>
                 ))
             }
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 10,
         paddingVertical: 5,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
     },
     texto: {
         fontSize: 40, 
